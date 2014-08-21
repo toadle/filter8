@@ -54,7 +54,7 @@ describe Filter8::Client do
       Timecop.return
 
       timestamp = client.timestamp
-      sleep 1.0/4
+      sleep 1.0/10
 
       expect(client.timestamp).to eq timestamp
     end

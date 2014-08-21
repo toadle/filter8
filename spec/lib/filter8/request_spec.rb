@@ -3,8 +3,23 @@ require 'spec_helper'
 describe Filter8::Request do
 
   describe "#initialization" do
+
     it "will configure a new request with no options" do
       expect(Filter8::Request.new("fuck")).to be_a Filter8::Request
+    end
+
+    it "will not be initializable without a content" do
+      expect{Filter8::Request.new}.to raise_error
+    end
+
+    it "will translate only options into content and options" do
+      request = Filter8::Request.new(content: "fuck", blacklist: "test")
+      expect(request.content).to eq "fuck"
+      expect(request.blacklist).to eq "test"
+    end
+
+    it "will raise an error when only options and no content is given" do
+      expect{Filter8::Request.new(blacklist: "test")}.to raise_error
     end
 
     it "will allow valid filters as options" do

@@ -24,7 +24,7 @@ module Filter8
       end
 
       conn.basic_auth self.api_key, password
-      
+
       response = conn.post "#{API_ENDPOINT}?#{nonce_param}", filter8_request.request_params
       JSON.parse response.body
     end

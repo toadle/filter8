@@ -3,8 +3,15 @@ module Filter8
     attr_accessor :content
     attr_accessor :blacklist
 
-    def initialize(content = nil, options = {})
-      @content = content
+    def initialize(content, options = {})
+      if content.is_a? Hash
+        @content = content[:content]
+        raise Exception.new("No value for 'content' given") if @content.nil?
+        options = content.reject!{ |k| k == :content }
+      else
+        @content = content
+      end
+
       options.each do |filter_name, filter_options|
         validate_filter_options(filter_name, filter_options)
 
