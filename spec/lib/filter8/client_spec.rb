@@ -39,8 +39,11 @@ describe Filter8::Client do
       client.send_request(filter8_request)
     end
 
-    it "will parse the response as JSON and return the result" do
-      expect(client.send_request(filter8_request)).to eq({ "test" => "response" })
+    it "will parse the response as JSON and return the result as a filter8-result" do
+      filter8_result = client.send_request(filter8_request)
+
+      expect(filter8_result).to be_a Filter8::Result
+      expect(filter8_result.json).to eq({ "test" => "response" })
     end
 
   end

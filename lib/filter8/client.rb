@@ -27,7 +27,7 @@ module Filter8
 
       raise Exception.new("Filter8-API error (Status: #{response.status}): #{response.body}") if(response.status != 200)
 
-      JSON.parse response.body
+      Filter8::Result.new JSON.parse(response.body)
     end
 
     def nonce_param
