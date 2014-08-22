@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name                      = "filter8"
-  s.version                   = "0.9"
+  s.version                   = "0.91"
   s.default_executable        = "hola"
 
   s.authors                   = ["Tim Adler"]
