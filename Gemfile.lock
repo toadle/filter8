@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    filter8 (0.9)
-      faraday (~> 0.9.0)
+    filter8 (0.91)
+      faraday
 
 GEM
   remote: https://rubygems.org/

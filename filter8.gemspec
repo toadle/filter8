@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name                      = "filter8"
-  s.version                   = "0.91"
-  s.default_executable        = "hola"
+  s.version                   = "0.9.1"
+  s.default_executable        = "filter8"
 
   s.authors                   = ["Tim Adler"]
   s.date                      = %q{2014-08-19}
