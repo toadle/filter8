@@ -37,6 +37,8 @@ If you want to change the **default-options** of filter8 (https://filter8.com/do
 Filter8.filter("your content", blacklist: {enabled: true, locales: [:en, :de, :fr], tags: ["AsciiArt"]})
 ```
 
+The **email** and **urls** filters are not yet supported.
+
 ## Feedback
 Feedback and pull-request are always welcome. 
 You can find the author via http://toadle.me
