@@ -22,6 +22,11 @@ describe Filter8::Request do
       expect{Filter8::Request.new(blacklist: "test")}.to raise_error
     end
 
+    it "will raise an error when onlyno content is given" do
+      expect{Filter8::Request.new(nil)}.to raise_error
+      expect{Filter8::Request.new("")}.to raise_error
+    end
+
     it "will allow valid filters as options" do
       request = Filter8::Request.new("fuck", blacklist: "test")
       expect(request.blacklist).to eq "test"
