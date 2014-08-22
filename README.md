@@ -44,4 +44,4 @@ Feedback and pull-request are always welcome.
 You can find the author via http://toadle.me
 
 ## License
-The filter8-gem is released under the MIT License.
+The filter8-gem is released under the [MIT License](http://opensource.org/licenses/MIT).
