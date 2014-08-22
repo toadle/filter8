@@ -18,8 +18,7 @@ module Filter8
 
     def send_request(filter8_request)
       conn = Faraday.new(:url => API_URL) do |faraday|
-        faraday.request  :url_encoded             
-        faraday.response :logger                
+        faraday.request  :url_encoded
         faraday.adapter  Faraday.default_adapter
       end
 
