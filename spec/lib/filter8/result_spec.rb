@@ -1,6 +1,11 @@
 require 'spec_helper'
 
-describe Filter8::Response do
+describe Filter8::Result do
+
+  it "will have a way to access the json-result directly" do
+    result = Filter8::Result.new({"test" => "result"})
+    expect(result.json).to eq({"test" => "result"})
+  end
 
   context "when initialized with an empty filter8-response" do
     let(:response_without_results) do
@@ -13,7 +18,15 @@ describe Filter8::Response do
         }
       }
     end
-    let(:response) { Filter8::Response.new(response_without_results) }
+    let(:result) { Filter8::Result.new(response_without_results) }
+
+    it "will state that there were no matches" do
+      expect(result.matched?).to be_false
+    end
+
+    it "will return no matches" do
+      expect(result.matches).to eq []
+    end
   end
 
   context "when initialized with a blacklist filter8-response" do
@@ -79,10 +92,18 @@ describe Filter8::Response do
         }
       }
     end
-    let(:response) { Filter8::Response.new(response_with_blacklist_results) }
+    let(:result) { Filter8::Result.new(response_with_blacklist_results) }
 
     it "will return the correct replacement" do
-      expect(response.replacement).to eq "**** this ************* **** ****!"
+      expect(result.replacement).to eq "**** this ************* **** ****!"
+    end
+
+    it "will state that there were matches" do
+      expect(result.matched?).to be_true
+    end
+
+    it "will return all matches" do
+      expect(result.matches).to eq(response_with_blacklist_results["filter"]["matches"].map { |match| OpenStruct.new(match) })
     end
   end
 
