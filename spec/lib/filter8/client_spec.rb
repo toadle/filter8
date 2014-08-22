@@ -16,7 +16,7 @@ describe Filter8::Client do
   end
 
   describe "#send_request" do
-    let(:faraday_response) {double("Faraday::Response", body: { "test" => "response" }.to_json)}
+    let(:faraday_response) {double("Faraday::Response", body: { "test" => "response" }.to_json, status: 200)}
     let(:faraday_connection) {double("Faraday::Connection", basic_auth: nil, post: faraday_response)}
     let(:filter8_request) {double("Filter8::Request", request_params: { "test" => "data" })}
 

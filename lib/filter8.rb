@@ -5,11 +5,19 @@ require "filter8/request"
 
 module Filter8
   BLACKLIST_FILTER = :blacklist
+  CHARACTERS_FILTER = :characters
+  EMAILS = :emails
+  PHONE_NUMBERS_FILTER = :phoneNumbers
+  URLS_FILTER = :urls
+  WORDS_FILTER = :words
 
-  AVAILABLE_FILTERS = [BLACKLIST_FILTER]
+  AVAILABLE_FILTERS = [BLACKLIST_FILTER, CHARACTERS_FILTER, EMAILS, PHONE_NUMBERS_FILTER, URLS_FILTER, WORDS_FILTER]
 
   FILTER_PARAMS = {
-    BLACKLIST_FILTER => [:locale, :tags, :severity]
+    BLACKLIST_FILTER => [:enabled, :locale, :tags, :severity], 
+    CHARACTERS_FILTER => [:character],
+    PHONE_NUMBERS_FILTER => [:maximumMatchLength, :minimumMatchLength, :separatorPenalty, :spacePenalty, :wordPenalty],
+    WORDS_FILTER => [:word]
   }
   
   class Configuration

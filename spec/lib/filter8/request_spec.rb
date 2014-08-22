@@ -40,6 +40,12 @@ describe Filter8::Request do
     it "will NOT allow valid filters with invalid options" do
       expect{Filter8::Request.new("fuck", blacklist: {myarg: "test"})}.to raise_error(Filter8::Exception)
     end
+
+    it "will allow filters to be disabled" do
+      request = Filter8::Request.new("fuck", blacklist: {enabled: false})
+
+      expect(request.blacklist).to eq({enabled: false})
+    end
   end
 
   describe "#request_params" do
@@ -57,6 +63,10 @@ describe Filter8::Request do
 
     it "will return the correct parameters, when one option with a multiple value is given" do
       expect(Filter8::Request.new("fuck", blacklist: {locale: [:en, :de]}).request_params).to eq "content=fuck&blacklist.enabled=true&blacklist.locale=en&blacklist.locale=de"
+    end
+
+    it "will return the correct parameters, when multiple options with a multiple values are given" do
+      expect(Filter8::Request.new("fuck", blacklist: {locale: [:en, :de]}, characters: {character: ["a", "b", "c"]}).request_params).to eq "content=fuck&blacklist.enabled=true&blacklist.locale=en&blacklist.locale=de&characters.enabled=true&characters.character=a&characters.character=b&characters.character=c"
     end
   end
 

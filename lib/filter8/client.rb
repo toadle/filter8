@@ -19,13 +19,15 @@ module Filter8
     def send_request(filter8_request)
       conn = Faraday.new(:url => API_URL) do |faraday|
         faraday.request  :url_encoded             
-        faraday.response :logger                  
+        faraday.response :logger                
         faraday.adapter  Faraday.default_adapter
       end
 
       conn.basic_auth self.api_key, password
-
       response = conn.post "#{API_ENDPOINT}?#{nonce_param}", filter8_request.request_params
+
+      raise Exception.new("Filter8-API error (Status: #{response.status}): #{response.body}") if(response.status != 200)
+
       JSON.parse response.body
     end
 

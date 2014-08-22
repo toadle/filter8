@@ -1,7 +1,6 @@
 module Filter8
   class Request
     attr_accessor :content
-    attr_accessor :blacklist
 
     def initialize(content, options = {})
       if content.is_a? Hash
@@ -23,6 +22,7 @@ module Filter8
           instance_variable_value = filter_options
         end
         instance_variable_set("@#{filter_name}", instance_variable_value)
+        self.class.send(:attr_accessor, filter_name)
       end
     end
 
