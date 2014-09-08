@@ -27,7 +27,7 @@ module Filter8
     end
 
     def request_params
-      request_params = "content=#{self.content}"
+      request_params = "content=#{CGI.escape(self.content)}"
 
       Filter8::AVAILABLE_FILTERS.each do |filter_name|
         if self.respond_to?(filter_name) && !self.send(filter_name).nil?

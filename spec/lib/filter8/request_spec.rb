@@ -58,6 +58,10 @@ describe Filter8::Request do
       expect(Filter8::Request.new("fuck").request_params).to eq "content=fuck"
     end
 
+    it "escapes url-critical parameters nicely" do
+      expect(Filter8::Request.new("Leaders! Start a book club with a new release from #OrangeBooks & get a free ticket to Orange Tour 2014.").request_params).to eq "content=Leaders%21+Start+a+book+club+with+a+new+release+from+%23OrangeBooks+%26+get+a+free+ticket+to+Orange+Tour+2014."
+    end
+
     it "will return the correct parameters, when one option with a single value is given" do
       expect(Filter8::Request.new("fuck", blacklist: "test").request_params).to eq "content=fuck&blacklist=test"
     end
