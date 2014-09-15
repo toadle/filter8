@@ -14,7 +14,7 @@ module Filter8
   AVAILABLE_FILTERS = [BLACKLIST_FILTER, CHARACTERS_FILTER, EMAILS, PHONE_NUMBERS_FILTER, URLS_FILTER, WORDS_FILTER]
 
   FILTER_PARAMS = {
-    BLACKLIST_FILTER => [:enabled, :locale, :tags, :severity], 
+    BLACKLIST_FILTER => [:enabled, :locale, :tag, :severity], 
     CHARACTERS_FILTER => [:character],
     PHONE_NUMBERS_FILTER => [:maximumMatchLength, :minimumMatchLength, :separatorPenalty, :spacePenalty, :wordPenalty],
     WORDS_FILTER => [:word]
